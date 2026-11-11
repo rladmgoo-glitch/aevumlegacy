@@ -1,0 +1,9 @@
+tunnel: f9f5e67a-8fa4-4935-ad4a-55b4bad2e8b3
+credentials-file: /Users/raphaelpiovezan/.cloudflared/f9f5e67a-8fa4-4935-ad4a-55b4bad2e8b3.json
+
+ingress:
+  - hostname: aevumlegacy.com.br
+    service: http://127.0.0.1:8090
+  - hostname: www.aevumlegacy.com.br
+    service: http://127.0.0.1:8090
+  - service: http_status:404

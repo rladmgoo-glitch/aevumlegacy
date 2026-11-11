@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0"><dict>
+	<key>Label</key><string>com.aevum.site.web</string>
+	<key>ProgramArguments</key><array>
+		<string>/opt/homebrew/bin/caddy</string><string>run</string>
+		<string>--config</string><string>/Users/raphaelpiovezan/aevumlegacy/Caddyfile</string>
+		<string>--adapter</string><string>caddyfile</string>
+	</array>
+	<key>EnvironmentVariables</key><dict>
+		<key>XDG_DATA_HOME</key><string>/Users/raphaelpiovezan/aevumlegacy/.caddy</string>
+		<key>XDG_CONFIG_HOME</key><string>/Users/raphaelpiovezan/aevumlegacy/.caddy</string>
+	</dict>
+	<key>WorkingDirectory</key><string>/Users/raphaelpiovezan/aevumlegacy</string>
+	<key>RunAtLoad</key><true/>
+	<key>KeepAlive</key><true/>
+	<key>ThrottleInterval</key><integer>5</integer>
+	<key>StandardOutPath</key><string>/Users/raphaelpiovezan/aevumlegacy/logs/web.out.log</string>
+	<key>StandardErrorPath</key><string>/Users/raphaelpiovezan/aevumlegacy/logs/web.err.log</string>
+</dict></plist>

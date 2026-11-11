@@ -1,0 +1,44 @@
+# AEVUM — aevumlegacy.com.br servido deste Mac mini.
+# Caddy só escuta em 127.0.0.1; a internet chega pelo túnel Cloudflare "aevum"
+# (~/.cloudflared/aevum.yml). Nenhuma porta aberta no roteador.
+{
+	admin off
+	auto_https off
+	persist_config off
+}
+
+http://:8090 {
+	bind 127.0.0.1
+	root * /Users/raphaelpiovezan/aevumlegacy/public
+	encode zstd gzip
+
+	# A Cloudflare informa o esquema original; http -> https.
+	@http header X-Forwarded-Proto http
+	redir @http https://{host}{uri} permanent
+
+	# www -> apex
+	@www host www.aevumlegacy.com.br
+	redir @www https://aevumlegacy.com.br{uri} permanent
+
+	header {
+		Strict-Transport-Security "max-age=31536000"
+		X-Content-Type-Options "nosniff"
+		Referrer-Policy "strict-origin-when-cross-origin"
+		X-Frame-Options "DENY"
+		Permissions-Policy "camera=(), microphone=(), geolocation=(), interest-cohort=()"
+		# Página autocontida: fonte e script embutidos, nada de terceiros.
+		Content-Security-Policy "default-src 'none'; style-src 'unsafe-inline'; script-src 'unsafe-inline'; font-src data:; img-src 'self' data:; base-uri 'none'; form-action 'none'; frame-ancestors 'none'"
+		-Server
+	}
+	# no-transform: a Cloudflare não reescreve a página (o "Email Obfuscation" trocaria
+	# o mailto por um script externo que a CSP acima bloqueia).
+	# img/ tem nome por hash (publicar.sh): pode ficar em cache para sempre.
+	@img path /img/*
+	@og path /og.jpg
+	@pagina not path /og.jpg /img/*
+	header @img Cache-Control "public, max-age=31536000, immutable, no-transform"
+	header @og Cache-Control "public, max-age=86400, no-transform"
+	header @pagina Cache-Control "public, max-age=300, no-transform"
+
+	file_server
+}

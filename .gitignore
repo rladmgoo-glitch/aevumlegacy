@@ -1,0 +1,16 @@
+# Estado do Caddy e logs dos serviços — da máquina, não do site.
+.caddy/
+logs/
+
+# Clone do monorepo que mora aqui por conveniência; tem repositório próprio.
+aevum/
+
+# O que o publicar.sh gera a partir da fonte (não versionar duas vezes):
+public/index.html
+public/og.jpg
+public/img/
+
+# Sobras de publicação interrompida.
+public/*.tmp
+public/**/*.tmp
+public/og.jpg.new

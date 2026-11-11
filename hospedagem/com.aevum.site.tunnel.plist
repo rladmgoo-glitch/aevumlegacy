@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0"><dict>
+	<key>Label</key><string>com.aevum.site.tunnel</string>
+	<key>ProgramArguments</key><array>
+		<string>/opt/homebrew/bin/cloudflared</string><string>tunnel</string>
+		<string>--config</string><string>/Users/raphaelpiovezan/.cloudflared/aevum.yml</string>
+		<string>--no-autoupdate</string><string>run</string>
+	</array>
+	<key>WorkingDirectory</key><string>/Users/raphaelpiovezan/.cloudflared</string>
+	<key>RunAtLoad</key><true/>
+	<key>KeepAlive</key><true/>
+	<key>ThrottleInterval</key><integer>5</integer>
+	<key>StandardOutPath</key><string>/Users/raphaelpiovezan/aevumlegacy/logs/tunnel.out.log</string>
+	<key>StandardErrorPath</key><string>/Users/raphaelpiovezan/aevumlegacy/logs/tunnel.err.log</string>
+</dict></plist>
